@@ -1,0 +1,18 @@
+{
+  "tarefas": [
+    {
+      "id": "b99d",
+      "titulo": "10317778650",
+      "data": "2025-06-14",
+      "tempo": "17:15",
+      "area": "academia"
+    },
+    {
+      "id": "4b92",
+      "titulo": "www",
+      "data": "2025-07-04",
+      "tempo": "15:16",
+      "area": "estudos"
+    }
+  ]
+}

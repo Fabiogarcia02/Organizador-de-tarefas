@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Organizador de Tarefas</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="container">
+    <h1>Organizador de Tarefas</h1>
+    <form id="task-form">
+      <input type="text" id="titulo" placeholder="Título da Tarefa" required />
+      <input type="date" id="data" required />
+      <input type="time" id="tempo" required />
+      <select id="area" required>
+        <option value="">Selecione a área</option>
+        <option value="academia">Academia</option>
+        <option value="trabalho">Trabalho</option>
+        <option value="estudos">Estudos</option>
+        <option value="pessoal">Pessoal</option>
+      </select>
+      <button type="submit">Adicionar Tarefa</button>
+    </form>
+    <div id="tarefas"></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
