@@ -110,3 +110,21 @@ form button:hover {
   background-color: #dc3545;
   color: #fff;
 }
+/* Responsividade */
+@media (max-width: 600px) {
+  body {
+    padding: 15px 10px;
+  }
+
+  form button {
+    width: 100%;
+  }
+
+  .filters {
+    flex-direction: column;
+  }
+
+  .filters select {
+    min-width: 100%;
+  }
+}
