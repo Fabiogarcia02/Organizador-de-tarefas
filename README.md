@@ -4,17 +4,6 @@ O Organizador de Tarefas é uma aplicação web simples, moderna e eficiente, cr
 Cadastro Rápido de Tarefas:
 Adicione atividades com título, data e tempo estimado em segundos.
 
-Categorização por Área com Cores e Ícones:
-As tarefas são exibidas em cards coloridos e com ícones visuais conforme a área:
-
-🏋 Academia
-
-💼 Trabalho
-
-📚 Estudos
-
-🏡 Pessoal
-
 Visual Moderno e Agradável:
 Design limpo com sombras suaves, bordas arredondadas e esquema de cores elegante.
 
