@@ -1,8 +1,11 @@
+// --- Início do script de tarefas ---
+// Comentário 1: Seleciona o formulário, container de tarefas e filtro
 const form = document.getElementById('task-form');
 const tarefasContainer = document.getElementById('tarefas');
 const filtroSelect = document.getElementById('filtro-areas');
 const API_URL = '/api/tarefas';
 
+// Comentário 2: Ícones para áreas de tarefas
 const icons = {
   academia: "🏋",
   trabalho: "💼",
@@ -10,14 +13,15 @@ const icons = {
   pessoal: "🏡"
 };
 
-// Solicitar permissão para notificações ao carregar o app
+// Comentário 3: Solicita permissão de notificações ao carregar
 if (window.Notification && Notification.permission !== "granted") {
   Notification.requestPermission();
 }
 
-// Só executa se estiver na área de tarefas
+// Comentário 4: Só executa se formulário e container existem
 if (form && tarefasContainer) {
-  // Buscar tarefas apenas do usuário logado
+
+  // Comentário 5: Buscar tarefas apenas do usuário logado
   async function fetchTarefas() {
     let usuarioLogado = localStorage.getItem('usuario');
     if (!usuarioLogado) return;
@@ -30,7 +34,7 @@ if (form && tarefasContainer) {
     renderTarefas(tarefas);
   }
 
-  // Renderizar tarefas
+  // Comentário 6: Função que renderiza as tarefas no DOM
   function renderTarefas(tarefas) {
     tarefasContainer.innerHTML = '';
     if (tarefas.length === 0) {
@@ -50,12 +54,12 @@ if (form && tarefasContainer) {
           <button class="btn-delete">🗑️ Excluir</button>
         </div>
       `;
-      // Excluir
+      // Comentário 7: Botão de excluir tarefa
       card.querySelector('.btn-delete').onclick = async () => {
         await fetch(`${API_URL}/${tarefa.id}`, { method: 'DELETE' });
         fetchTarefas();
       };
-      // Editar (preenche o form)
+      // Comentário 8: Botão de editar tarefa (preenche form)
       card.querySelector('.btn-edit').onclick = () => {
         form.titulo.value = tarefa.titulo;
         form.descricao.value = tarefa.descricao || '';
@@ -68,7 +72,7 @@ if (form && tarefasContainer) {
     });
   }
 
-  // Submeter tarefa (adicionar ou editar)
+  // Comentário 9: Submissão do formulário de tarefa
   form.onsubmit = async function(e) {
     e.preventDefault();
     const usuarioLogado = localStorage.getItem('usuario');
@@ -100,19 +104,19 @@ if (form && tarefasContainer) {
     fetchTarefas();
   };
 
-  // Filtro de áreas
+  // Comentário 10: Alteração no filtro recarrega tarefas
   if (filtroSelect) {
     filtroSelect.onchange = fetchTarefas;
   }
 
-  // Carregar tarefas ao abrir área de tarefas
+  // Comentário 11: Carrega tarefas ao abrir área de tarefas
   window.addEventListener('load', () => {
     if (document.getElementById('app-container').style.display !== 'none') {
       fetchTarefas();
     }
   });
 
-  // Também recarrega tarefas ao mostrar área de tarefas após login
+  // Comentário 12: Recarrega ao exibir tarefas após login
   const observer = new MutationObserver(() => {
     if (document.getElementById('app-container').style.display !== 'none') {
       fetchTarefas();
@@ -121,29 +125,28 @@ if (form && tarefasContainer) {
   observer.observe(document.getElementById('app-container'), { attributes: true, attributeFilter: ['style'] });
 }
 
-// --- Notificações de tarefas próximas ---
+// Comentário 13: Checa notificações de tarefas próximas
 function checarNotificacoesTarefas(tarefas) {
   if (!("Notification" in window) || Notification.permission !== "granted") return;
 
   const agora = new Date();
   tarefas.forEach(tarefa => {
     if (!tarefa.data || !tarefa.tempo) return;
-
     const dataHoraTarefa = new Date(`${tarefa.data}T${tarefa.tempo}`);
     const diffMin = Math.floor((dataHoraTarefa - agora) / 60000);
 
-    // Notificar se faltar entre 0 e 10 minutos para a tarefa
+    // Comentário 14: Notificar se faltar entre 0 e 10 minutos
     if (diffMin >= 0 && diffMin <= 10 && !tarefa.notificado) {
       new Notification("Tarefa próxima!", {
         body: `A tarefa "${tarefa.titulo}" está marcada para ${tarefa.tempo}.`,
         icon: "https://cdn-icons-png.flaticon.com/512/1828/1828817.png"
       });
-      tarefa.notificado = true; // Evita notificar de novo (apenas na sessão)
+      tarefa.notificado = true;
     }
   });
 }
 
-// Checa notificações a cada minuto
+// Comentário 15: Checa notificações a cada minuto
 setInterval(async () => {
   let usuarioLogado = localStorage.getItem('usuario');
   if (!usuarioLogado) return;
@@ -152,7 +155,7 @@ setInterval(async () => {
   checarNotificacoesTarefas(tarefas);
 }, 60000);
 
-// Também checa ao carregar a página
+// Comentário 16: Checa notificações ao carregar a página
 window.addEventListener('load', async () => {
   let usuarioLogado = localStorage.getItem('usuario');
   if (!usuarioLogado) return;
@@ -160,3 +163,5 @@ window.addEventListener('load', async () => {
   const tarefas = await res.json();
   checarNotificacoesTarefas(tarefas);
 });
+
+// --- Fim do script de tarefas ---
