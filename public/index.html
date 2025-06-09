@@ -11,7 +11,6 @@
   <div id="login-container" class="main-container login-container">
     <h1>Organizador de Tarefas</h1>
     <div class="auth-container">
-      <!-- Formulário de Login -->
       <form id="login-form" class="auth-form">
         <h2>Login</h2>
         <input type="text" id="usuario" placeholder="Usuário" required />
@@ -22,7 +21,6 @@
         </p>
         <div id="login-erro" class="msg-erro"></div>
       </form>
-      <!-- Formulário de Cadastro -->
       <form id="cadastro-form" class="auth-form" style="display:none;">
         <h2>Cadastro</h2>
         <input type="text" id="novo-usuario" placeholder="Novo usuário" required />
@@ -119,7 +117,7 @@
 
       if (usuarios.length > 0) {
         localStorage.setItem('logado', 'true');
-        localStorage.setItem('usuario', usuario); // ESSENCIAL PARA VÍNCULO DAS TAREFAS
+        localStorage.setItem('usuario', usuario);
         document.getElementById('login-container').style.display = 'none';
         document.getElementById('app-container').style.display = '';
       } else {
@@ -146,4 +144,4 @@
     };
   </script>
 </body>
-</html>
+</html>     <!-- node server/server.js -->

@@ -1,20 +1,58 @@
 {
   "tarefas": [
     {
+      "id": "ecc6",
       "titulo": "Lavar a louça",
       "descricao": "Claudia precisa de seu apoio para manter a casa organizada e limpa",
       "data": "2025-06-08",
       "tempo": "16:48",
       "area": "pessoal",
-      "id": "ecc6"
+      "usuario": "admin"
     },
     {
-      "titulo": "Passear com o cachorro ",
+      "id": "lhSJZEf",
+      "titulo": "Passear com o cachorro",
       "descricao": "Caminhada de 30 minutos",
       "data": "2025-06-20",
       "tempo": "14:05",
       "area": "academia",
-      "id": "lhSJZEf"
+      "usuario": "fabiogarciamartins2025@gmail.com"
+    },
+    {
+      "titulo": "jeusise",
+      "descricao": "dddd",
+      "data": "2025-06-09",
+      "tempo": "17:40",
+      "area": "trabalho",
+      "usuario": "fabiogarciamartins2070@gmail.com",
+      "id": "amQR3QU"
+    },
+    {
+      "titulo": "dddd",
+      "descricao": "ffff",
+      "data": "2025-06-09",
+      "tempo": "17:50",
+      "area": "estudos",
+      "usuario": "fabiogarciamartins2070@gmail.com",
+      "id": "B6PimRM"
+    },
+    {
+      "titulo": "www",
+      "descricao": "ssss",
+      "data": "2025-06-09",
+      "tempo": "17:42",
+      "area": "academia",
+      "usuario": "fabiogarciamartins2020@gmail.com",
+      "id": "GsUmiTi"
+    },
+    {
+      "titulo": "www",
+      "descricao": "dddd",
+      "data": "2025-06-09",
+      "tempo": "17:50",
+      "area": "trabalho",
+      "usuario": "fabiogarciamartins2070@gmail.com",
+      "id": "oPCrTfe"
     }
   ],
   "usuarios": [
@@ -29,14 +67,19 @@
       "senha": "Faibola02"
     },
     {
+      "id": 3,
       "usuario": "fabiogarciamartins2019@gmail.com",
-      "senha": "olab",
-      "id": 3
+      "senha": "olab"
     },
     {
+      "id": 4,
       "usuario": "fabiogarciamartins2070@gmail.com",
-      "senha": "jacinte",
-      "id": 4
+      "senha": "jacinte"
+    },
+    {
+      "usuario": "fabiogarciamartins2020@gmail.com",
+      "senha": "123",
+      "id": 5
     }
   ]
 }

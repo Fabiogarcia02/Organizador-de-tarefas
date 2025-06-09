@@ -10,6 +10,11 @@ const icons = {
   pessoal: "🏡"
 };
 
+// Solicitar permissão para notificações ao carregar o app
+if (window.Notification && Notification.permission !== "granted") {
+  Notification.requestPermission();
+}
+
 // Só executa se estiver na área de tarefas
 if (form && tarefasContainer) {
   // Buscar tarefas apenas do usuário logado
@@ -115,3 +120,43 @@ if (form && tarefasContainer) {
   });
   observer.observe(document.getElementById('app-container'), { attributes: true, attributeFilter: ['style'] });
 }
+
+// --- Notificações de tarefas próximas ---
+function checarNotificacoesTarefas(tarefas) {
+  if (!("Notification" in window) || Notification.permission !== "granted") return;
+
+  const agora = new Date();
+  tarefas.forEach(tarefa => {
+    if (!tarefa.data || !tarefa.tempo) return;
+
+    const dataHoraTarefa = new Date(`${tarefa.data}T${tarefa.tempo}`);
+    const diffMin = Math.floor((dataHoraTarefa - agora) / 60000);
+
+    // Notificar se faltar entre 0 e 10 minutos para a tarefa
+    if (diffMin >= 0 && diffMin <= 10 && !tarefa.notificado) {
+      new Notification("Tarefa próxima!", {
+        body: `A tarefa "${tarefa.titulo}" está marcada para ${tarefa.tempo}.`,
+        icon: "https://cdn-icons-png.flaticon.com/512/1828/1828817.png"
+      });
+      tarefa.notificado = true; // Evita notificar de novo (apenas na sessão)
+    }
+  });
+}
+
+// Checa notificações a cada minuto
+setInterval(async () => {
+  let usuarioLogado = localStorage.getItem('usuario');
+  if (!usuarioLogado) return;
+  const res = await fetch('/api/tarefas?usuario=' + encodeURIComponent(usuarioLogado));
+  const tarefas = await res.json();
+  checarNotificacoesTarefas(tarefas);
+}, 60000);
+
+// Também checa ao carregar a página
+window.addEventListener('load', async () => {
+  let usuarioLogado = localStorage.getItem('usuario');
+  if (!usuarioLogado) return;
+  const res = await fetch('/api/tarefas?usuario=' + encodeURIComponent(usuarioLogado));
+  const tarefas = await res.json();
+  checarNotificacoesTarefas(tarefas);
+});
