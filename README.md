@@ -22,4 +22,7 @@ Este é um aplicativo web simples e moderno para organização de tarefas, com a
 🗄️ json-server (ou outra API REST para persistência)
 Node.JS
 
+![image](https://github.com/user-attachments/assets/c2438a9d-3431-4e01-9ea4-78b006f1d148)
+![image](https://github.com/user-attachments/assets/dd15a002-fb15-440f-a6a4-b31f634fd8a7)
+
 
