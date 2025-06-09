@@ -4,12 +4,17 @@
   "description": "Aplicativo web simples para organizar tarefas com categorias personalizadas",
   "main": "server.js",
   "scripts": {
-    "start": "json-server --watch db.json --port 3000"
+    "start": "json-server --watch server/db.json --port 3000"
   },
-  "keywords": ["organizador", "tarefas", "json-server"],
+  "keywords": [
+    "organizador",
+    "tarefas",
+    "json-server"
+  ],
   "author": "Seu Nome",
   "license": "MIT",
   "dependencies": {
-    "json-server": "^0.17.3"
+    "express": "^5.1.0",
+    "json-server": "^0.17.4"
   }
 }

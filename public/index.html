@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Organizador de Tarefas</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <!-- LOGIN/CADASTRO -->
+  <div id="login-container" class="main-container login-container">
+    <h1>Organizador de Tarefas</h1>
+    <div class="auth-container">
+      <!-- Formulário de Login -->
+      <form id="login-form" class="auth-form">
+        <h2>Login</h2>
+        <input type="text" id="usuario" placeholder="Usuário" required />
+        <input type="password" id="senha" placeholder="Senha" required />
+        <button type="submit">Entrar</button>
+        <p class="switch-link">
+          <a href="#" id="mostrar-cadastro">Não tem conta? Cadastre-se</a>
+        </p>
+        <div id="login-erro" class="msg-erro"></div>
+      </form>
+      <!-- Formulário de Cadastro -->
+      <form id="cadastro-form" class="auth-form" style="display:none;">
+        <h2>Cadastro</h2>
+        <input type="text" id="novo-usuario" placeholder="Novo usuário" required />
+        <input type="password" id="nova-senha" placeholder="Nova senha" required />
+        <button type="submit">Cadastrar</button>
+        <p class="switch-link">
+          <a href="#" id="mostrar-login">Já tem conta? Entrar</a>
+        </p>
+        <div id="cadastro-erro" class="msg-erro"></div>
+        <div id="cadastro-sucesso" class="msg-sucesso"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ÁREA DE TAREFAS -->
+  <div id="app-container" class="main-container app-container" style="display:none;">
+    <h1>Organizador de Tarefas</h1>
+    <form id="task-form" class="task-form">
+      <h2>Nova Tarefa</h2>
+      <input type="text" id="titulo" placeholder="Título da Tarefa" required />
+      <textarea id="descricao" placeholder="Descrição da tarefa" rows="3" style="resize:vertical"></textarea>
+      <div class="row">
+        <input type="date" id="data" required />
+        <input type="time" id="tempo" required />
+      </div>
+      <select id="area" required>
+        <option value="">Selecione a área</option>
+        <option value="academia">Academia</option>
+        <option value="trabalho">Trabalho</option>
+        <option value="estudos">Estudos</option>
+        <option value="pessoal">Pessoal</option>
+      </select>
+      <button type="submit">Adicionar Tarefa</button>
+    </form>
+
+    <select id="filtro-areas">
+      <option value="">Todas as áreas</option>
+      <option value="academia">Academia</option>
+      <option value="trabalho">Trabalho</option>
+      <option value="estudos">Estudos</option>
+      <option value="pessoal">Pessoal</option>
+    </select>
+    <div id="tarefas"></div>
+    <button id="logout-btn" style="margin-top:20px;">Sair</button>
+  </div>
+  <script src="script.js"></script>
+  <script>
+    // Alternar entre login e cadastro
+    document.getElementById('mostrar-cadastro').onclick = function(e) {
+      e.preventDefault();
+      document.getElementById('login-form').style.display = 'none';
+      document.getElementById('cadastro-form').style.display = '';
+    };
+    document.getElementById('mostrar-login').onclick = function(e) {
+      e.preventDefault();
+      document.getElementById('cadastro-form').style.display = 'none';
+      document.getElementById('login-form').style.display = '';
+    };
+
+    // Cadastro de usuário
+    document.getElementById('cadastro-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const usuario = document.getElementById('novo-usuario').value;
+      const senha = document.getElementById('nova-senha').value;
+
+      const res = await fetch('/api/usuarios?usuario=' + usuario);
+      const usuarios = await res.json();
+
+      if (usuarios.length > 0) {
+        document.getElementById('cadastro-erro').textContent = 'Usuário já existe!';
+        document.getElementById('cadastro-sucesso').textContent = '';
+        return;
+      }
+
+      await fetch('/api/usuarios', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ usuario, senha })
+      });
+
+      document.getElementById('cadastro-sucesso').textContent = 'Usuário cadastrado com sucesso!';
+      document.getElementById('cadastro-erro').textContent = '';
+      document.getElementById('cadastro-form').reset();
+    });
+
+    // Login de usuário
+    document.getElementById('login-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const usuario = document.getElementById('usuario').value;
+      const senha = document.getElementById('senha').value;
+
+      const res = await fetch(`/api/usuarios?usuario=${usuario}&senha=${senha}`);
+      const usuarios = await res.json();
+
+      if (usuarios.length > 0) {
+        localStorage.setItem('logado', 'true');
+        localStorage.setItem('usuario', usuario); // ESSENCIAL PARA VÍNCULO DAS TAREFAS
+        document.getElementById('login-container').style.display = 'none';
+        document.getElementById('app-container').style.display = '';
+      } else {
+        document.getElementById('login-erro').textContent = 'Usuário ou senha inválidos!';
+      }
+    });
+
+    // Logout
+    document.getElementById('logout-btn').onclick = function() {
+      localStorage.removeItem('logado');
+      localStorage.removeItem('usuario');
+      location.reload();
+    };
+
+    // Exibe o formulário correto ao carregar a página
+    window.onload = function() {
+      if (localStorage.getItem('logado') === 'true') {
+        document.getElementById('login-container').style.display = 'none';
+        document.getElementById('app-container').style.display = '';
+      } else {
+        document.getElementById('login-container').style.display = '';
+        document.getElementById('app-container').style.display = 'none';
+      }
+    };
+  </script>
+</body>
+</html>
