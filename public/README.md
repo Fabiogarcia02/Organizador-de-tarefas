@@ -1,20 +1,28 @@
-O Organizador de Tarefas é uma aplicação web simples, moderna e eficiente, criada para ajudar você a planejar melhor seu tempo e suas atividades diárias. Com uma interface intuitiva e responsiva, ele permite cadastrar tarefas com data, tempo estimado e área específica de atuação — como academia, trabalho, estudos ou pessoal.
+📝 Organizador de Tarefas
+Este é um aplicativo web simples e moderno para organização de tarefas, com autenticação de usuários, cadastro de tarefas por área, filtro e edição. O projeto utiliza HTML, CSS e JavaScript puro no frontend e pode ser integrado a uma API REST (por exemplo, json-server) para persistência dos dados.
 
-🔑 Principais Funcionalidades:
-Cadastro Rápido de Tarefas:
-Adicione atividades com título, data e tempo estimado em segundos.
+✨ Funcionalidades
+✅ Cadastro e login de usuários
+✅ Adicionar, editar e excluir tarefas
+✅ Campos de tarefa: título, descrição, data, hora e área (academia, trabalho, estudos, pessoal)
+✅ Filtro por área
+✅ Cards responsivos e coloridos para cada tarefa
+✅ Logout
+✅ Layout responsivo e visual agradável
 
-Visual Moderno e Agradável:
-Design limpo com sombras suaves, bordas arredondadas e esquema de cores elegante.
 
-Filtros por Área:
-Visualize apenas as tarefas relacionadas à área que deseja focar no momento.
 
-Edição e Exclusão de Tarefas:
-Gerencie facilmente suas tarefas: edite informações ou exclua com um clique.
+💻 Tecnologias
+🌐 HTML5
 
-Confirmação de Cadastro:
-Mensagens visuais confirmam quando uma tarefa é cadastrada com sucesso.
+🎨 CSS3 (Flexbox, Grid, responsivo)
 
-💻 Como Funciona:
-O sistema é dividido entre frontend (site) e backend (banco de dados via JSON Server), proporcionando uma experiência leve e eficiente. Ele pode ser hospedado online e personalizado de acordo com sua rotina.
+⚙️ JavaScript (ES6)
+
+🗄️ json-server (ou outra API REST para persistência)
+Node.JS
+
+![image](https://github.com/user-attachments/assets/c2438a9d-3431-4e01-9ea4-78b006f1d148)
+![image](https://github.com/user-attachments/assets/dd15a002-fb15-440f-a6a4-b31f634fd8a7)
+
+
