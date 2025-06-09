@@ -32,4 +32,18 @@ Node.JS
 ![image](https://github.com/user-attachments/assets/dd15a002-fb15-440f-a6a4-b31f634fd8a7)
 
 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  atualizaçoes futuras: aba com anotaçoes, aba com planos diarios, rotina escolar ou grade de horarios, por meio de cadastro
