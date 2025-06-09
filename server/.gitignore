@@ -8,5 +8,4 @@ node_modules/
 .DS_Store
 Thumbs.db
 
-# Ignorar banco local se for temporário
-db.json
+

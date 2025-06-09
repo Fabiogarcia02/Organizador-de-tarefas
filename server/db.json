@@ -1,0 +1,42 @@
+{
+  "tarefas": [
+    {
+      "titulo": "Lavar a louça",
+      "descricao": "Claudia precisa de seu apoio para manter a casa organizada e limpa",
+      "data": "2025-06-08",
+      "tempo": "16:48",
+      "area": "pessoal",
+      "id": "ecc6"
+    },
+    {
+      "titulo": "Passear com o cachorro ",
+      "descricao": "Caminhada de 30 minutos",
+      "data": "2025-06-20",
+      "tempo": "14:05",
+      "area": "academia",
+      "id": "lhSJZEf"
+    }
+  ],
+  "usuarios": [
+    {
+      "id": 1,
+      "usuario": "admin",
+      "senha": "1234"
+    },
+    {
+      "id": 2,
+      "usuario": "fabiogarciamartins2025@gmail.com",
+      "senha": "Faibola02"
+    },
+    {
+      "usuario": "fabiogarciamartins2019@gmail.com",
+      "senha": "olab",
+      "id": 3
+    },
+    {
+      "usuario": "fabiogarciamartins2070@gmail.com",
+      "senha": "jacinte",
+      "id": 4
+    }
+  ]
+}
