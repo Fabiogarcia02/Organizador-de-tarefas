@@ -16,7 +16,7 @@ O sistema envia notificações pelo navegador quando faltar 10 minutos ou menos 
 🌐 HTML5  
 🎨 CSS3 (Flexbox, Grid, responsivo)  
 ⚙️ JavaScript (ES6)  
-🗄️ json-server (ou outra API REST para persistência)  
+🗄️ json-server 
 Node.JS
 
 
